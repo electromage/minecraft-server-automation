@@ -1,10 +1,10 @@
 # Initialize the Minecraft server
+source scripts/config.env
 
-# Create the server directory
+# Create the directories
 mkdir -p /opt/minecraft-server
-
-# Create the Spigot directory
 mkdir -p /opt/spigot-buildtools
+mkdir -p /var/backups/minecraft-server
 
 # Create a new user
 sudo useradd -m minecraft
