@@ -10,8 +10,8 @@ ProtectSystem=full
 PrivateDevices=true
 NoNewPrivileges=true
 WorkingDirectory=/opt/minecraft-server
-ExecStart=/usr/bin/tmux new-session -d -s minecraft '/usr/bin/java -Xmx1024M -Xms1024M -jar server.jar nogui'
-ExecStop=/usr/bin/tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN. Saving map...' Enter 'save-all' Enter 'stop' Enter
+ExecStart=/opt/minecraft-server/minecraft.sh start
+ExecStop=/opt/minecraft-server/minecraft.sh stop
 Restart=on-failure
 
 [Install]
