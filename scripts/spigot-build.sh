@@ -7,6 +7,7 @@ cd $SPIGOT_DIR
 # Create the directories if they don't exist
 mkdir -p "$SPIGOT_DIR"
 mkdir -p "$MINECRAFT_DIR"
+chown -R minecraft:minecraft "$SPIGOT_DIR"
 
 # Download BuildTools.jar if it doesn't exist
 if [ ! -f "$SPIGOT_DIR/BuildTools.jar" ]; then
