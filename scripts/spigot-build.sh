@@ -1,20 +1,20 @@
 #!/bin/bash
 
-# Set the paths
-buildtools_dir="/opt/spigot-buildtools"
-minecraft_server_dir="/opt/minecraft-server"
+source config/env.sh
+
+cd $SPIGOT_DIR
 
 # Create the directories if they don't exist
-mkdir -p "$buildtools_dir"
-mkdir -p "$minecraft_server_dir"
+mkdir -p "$SPIGOT_DIR"
+mkdir -p "$MINECRAFT_DIR"
 
 # Download BuildTools.jar if it doesn't exist
-if [ ! -f "$buildtools_dir/BuildTools.jar" ]; then
-    wget -O "$buildtools_dir/BuildTools.jar" https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+if [ ! -f "$SPIGOT_DIR/BuildTools.jar" ]; then
+    wget -O "$SPIGOT_DIR/BuildTools.jar" https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 fi
 
 # Run BuildTools.jar
-java -jar "$buildtools_dir/BuildTools.jar" --rev latest
+java -jar "$SPIGOT_DIR/BuildTools.jar" --rev latest
 
 # Copy the resulting jar file to the minecraft server directory
-find "$buildtools_dir" -name "spigot-*.jar" -type f -exec ls -t {} + | head -n 1 | xargs -I {} cp {} "$minecraft_server_dir"
+find "$SPIGOT_DIR" -name "spigot-*.jar" -type f -exec ls -t {} + | head -n 1 | xargs -I {} cp {} "$MINECRAFT_DIR"
