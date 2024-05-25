@@ -32,6 +32,7 @@ To install the Minecraft server automation scripts, follow these steps:
     BACKUP_DIR=/var/backups/minecraft-server
     MINECRAFT_USER=minecraft
     BUILD_TOOLS_URL=https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+    SPIGOT_VERSION=latest
     ```
 
 5. Run the server setup script:

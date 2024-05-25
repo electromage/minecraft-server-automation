@@ -14,7 +14,7 @@ if [ ! -f "$SPIGOT_DIR/BuildTools.jar" ]; then
 fi
 
 # Run BuildTools.jar
-java -jar "$SPIGOT_DIR/BuildTools.jar" --rev latest
+java -jar "$SPIGOT_DIR/BuildTools.jar" --rev $SPIGOT_VERSION
 
 # Copy the resulting jar file to the minecraft server directory
 find "$SPIGOT_DIR" -name "spigot-*.jar" -type f -exec ls -t {} + | head -n 1 | xargs -I {} cp {} "$MINECRAFT_DIR"
