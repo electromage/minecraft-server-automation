@@ -5,14 +5,13 @@ After=network.target
 [Service]
 User=minecraft
 Nice=1
-KillMode=none
-SuccessExitStatus=0 1
 ProtectHome=true
 ProtectSystem=full
 PrivateDevices=true
 NoNewPrivileges=true
 WorkingDirectory=/opt/minecraft-server
-ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar /opt/minecraft-server/minecraft_server.jar nogui
+ExecStart=/usr/bin/tmux new-session -d -s minecraft '/usr/bin/java -Xmx1024M -Xms1024M -jar server.jar nogui'
+ExecStop=/usr/bin/tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN. Saving map...' Enter 'save-all' Enter 'stop' Enter
 Restart=on-failure
 
 [Install]

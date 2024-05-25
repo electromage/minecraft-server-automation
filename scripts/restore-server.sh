@@ -27,21 +27,18 @@ read -p "Are you sure you want to restore the backup from $backup_name? This wil
 confirm=${confirm,,}  # tolower
 
 if [[ $confirm =~ ^(yes|y)$ ]]; then
-    # Extract the server name from the backup name
-    server_name=${backup_name%-*}
-
     # Stop the Minecraft server
     echo "Stopping Minecraft server..."
-    systemctl stop "$server_name"
+    systemctl stop minecraft
 
     # Restore the backup
     echo "Restoring backup..."
-    rsync -a --delete "$backup_dir/$backup_name/" "$source_dir/$server_name"
+    rsync -a --delete "$backup_dir/$backup_name/" "$source_dir/"
     echo "Backup restored."
 
     # Start the Minecraft server
     echo "Starting Minecraft server..."
-    systemctl start "$server_name"
+    systemctl start minecraft
 else
     echo "Restore cancelled."
 fi
