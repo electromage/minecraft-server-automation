@@ -10,8 +10,8 @@ ProtectSystem=full
 PrivateDevices=true
 NoNewPrivileges=true
 WorkingDirectory=/opt/minecraft-server
-ExecStart=/opt/minecraft-server/control-server.sh start
-ExecStop=/opt/minecraft-server/control-server.sh stop
+ExecStart=/opt/minecraft-server/scripts/server.sh start
+ExecStop=/opt/minecraft-server/scripts/server.sh stop
 Restart=on-failure
 
 [Install]

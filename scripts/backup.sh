@@ -1,17 +1,15 @@
 #!/bin/bash
 
-# Set the source and backup directories
-source_dir="/opt/minecraft-server"
-backup_dir="/var/backups/minecraft-server"
+source config/vars.env
 
 # Create the backup directory if it doesn't exist
-mkdir -p "$backup_dir"
+mkdir -p "$BACKUP_DIR"
 
 # Get the current date
 date=$(date +%Y%m%d)
 
 # Create a new backup
-rsync -a "$source_dir/" "$backup_dir/minecraft-server-$date"
+rsync -a "$MINECRAFT_DIR/" "$BACKUP_DIR/minecraft-server-$date"
 
-# Delete backups older than 7 days
-find "$backup_dir" -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \;
+# Delete backups older than X days
+find "$BACKUP_DIR" -maxdepth 1 -type d -mtime +$BACKUP_COPIES -exec rm -rf {} \;
