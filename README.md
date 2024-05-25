@@ -61,4 +61,4 @@ View logged messages: `journalctl -u minecraft`
 
 ### Updating Spigot
 
-Run `scripts/spigot-build.sh`, this will produce a new spigot_server.jar file inside your Minecraft directory.
+Run `scripts/spigot-build.sh`, this will produce a new spigot-[version].jar file inside your Minecraft directory.
