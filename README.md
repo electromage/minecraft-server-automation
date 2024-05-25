@@ -9,7 +9,7 @@ To install the Minecraft server automation scripts, follow these steps:
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone https://github.com/mblank/minecraft-server-automation.git
+    git clone https://github.com/electromage/minecraft-server-automation.git
     ```
 
 2. Change into the project directory:
@@ -61,4 +61,4 @@ View logged messages: `journalctl -u minecraft`
 
 ### Updating Spigot
 
-Run `scripts/spigot-build.sh`, this will produce 
+Run `scripts/spigot-build.sh`, this will produce a new spigot_server.jar file inside your Minecraft directory.

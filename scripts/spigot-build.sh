@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source config/env.sh
+source config/vars.env
 
 cd $SPIGOT_DIR
 
