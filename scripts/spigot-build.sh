@@ -2,10 +2,13 @@
 
 source config/vars.env
 
-# Check if $SPIGOT_DIR is writable by the minecraft user
-if ! sudo -u minecraft test -w "$SPIGOT_DIR"; then
-    echo "$SPIGOT_DIR is not writable by the minecraft user. Please run the script with sudo."
-    exit 1
+# Check if the script is being run with sudo
+if [ "$EUID" -ne 0 ]; then
+    # If the script is not being run with sudo, check if $SPIGOT_DIR is writable by the current user
+    if [ ! -w "$SPIGOT_DIR" ]; then
+        echo "$SPIGOT_DIR is not writable. Please run the script with sudo or check the permissions."
+        exit 1
+    fi
 fi
 
 cd $SPIGOT_DIR
