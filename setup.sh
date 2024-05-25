@@ -23,12 +23,13 @@ sudo chown -R $MINECRAFT_USER:$MINECRAFT_USER $SPIGOT_DIR
 # Get the latest version of the Spigot BuildTools
 wget -O $SPIGOT_DIR/BuildTools.jar "$BUILD_TOOLS_URL"
 
-# Copy Scripts to the server directory
-cp scripts/* $MINECRAFT_DIR
+# Copy files to the server directory
+cp -r scripts/* $MINECRAFT_DIR
+cp -r config/* $MINECRAFT_DIR
 
 # Install the unit file if it doesn't already exist
 if [ ! -f /etc/systemd/system/minecraft.service ]; then
-    sudo cp scripts/minecraft.service /etc/systemd/system/
+    sudo cp systemd/minecraft.service /etc/systemd/system/
     sudo chmod 644 /etc/systemd/system/minecraft.service
     sudo systemctl daemon-reload
 
@@ -36,7 +37,7 @@ else
     echo "/etc/systemd/system/minecraft.service already exists."
 fi
 
-if ! systemctl is-enabled minecraft.service; then
+if ! systemctl status minecraft.service >/dev/null 2>&1; then
     sudo systemctl enable minecraft.service
 else
     echo "minecraft.service is already enabled."
