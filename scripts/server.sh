@@ -6,7 +6,7 @@ case $1 in
     ;;
   stop)
     if /usr/bin/tmux has-session -t minecraft 2>/dev/null; then
-      /usr/bin/tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN. Saving map...' Enter 'save-all' Enter 'stop' Enter
+      /usr/bin/tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN.' Enter 'stop' Enter
     fi
     ;;
 esac
