@@ -2,6 +2,12 @@
 
 source config/vars.env
 
+# Check if $SPIGOT_DIR is writable by the minecraft user
+if ! sudo -u minecraft test -w "$SPIGOT_DIR"; then
+    echo "$SPIGOT_DIR is not writable by the minecraft user. Please run the script with sudo."
+    exit 1
+fi
+
 cd $SPIGOT_DIR
 
 # Create the directories if they don't exist
