@@ -17,4 +17,4 @@ fi
 java -jar "$buildtools_dir/BuildTools.jar" --rev latest
 
 # Copy the resulting jar file to the minecraft server directory
-cp "$buildtools_dir/spigot-*.jar" "$minecraft_server_dir"
+find "$buildtools_dir" -name "spigot-*.jar" -type f -exec ls -t {} + | head -n 1 | xargs -I {} cp {} "$minecraft_server_dir"
