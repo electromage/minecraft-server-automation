@@ -8,8 +8,8 @@ mkdir -p $SPIGOT_DIR
 mkdir -p $BACKUP_DIR
 
 # Copy files to the server directory
-cp -r scripts/* $MINECRAFT_DIR/
-cp -r config/* $MINECRAFT_DIR/
+cp -r scripts/ $MINECRAFT_DIR
+cp -r config/ $MINECRAFT_DIR
 
 # Create a new user if it doesn't already exist
 if ! id -u minecraft >/dev/null 2>&1; then
@@ -27,8 +27,10 @@ sudo chown -R $MINECRAFT_USER:$MINECRAFT_USER $SPIGOT_DIR
 # Get the latest version of the Spigot BuildTools
 wget -O $SPIGOT_DIR/BuildTools.jar "$BUILD_TOOLS_URL"
 
-# Build the Spigot server
-bash scripts/spigot-build.sh
+# Build the Spigot server if spigot*.jar isn't already installed
+if ! ls $MINECRAFT_DIR/spigot*.jar >/dev/null 2>&1; then
+    bash scripts/spigot-build.sh
+fi
 
 # Install the unit file if it doesn't already exist
 if [ ! -f /etc/systemd/system/minecraft.service ]; then
