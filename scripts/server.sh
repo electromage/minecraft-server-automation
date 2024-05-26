@@ -10,6 +10,14 @@ case $1 in
   stop)
     if /usr/bin/tmux has-session -t minecraft 2>/dev/null; then
       /usr/bin/tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN.' Enter 'stop' Enter
+      # Wait for the server to shut down properly
+      while /usr/bin/tmux has-session -t minecraft 2>/dev/null; do
+        sleep 1
+      done
     fi
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}" >&2
+    exit 1
     ;;
 esac

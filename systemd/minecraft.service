@@ -13,6 +13,8 @@ WorkingDirectory=/opt/minecraft-server
 ExecStart=/opt/minecraft-server/scripts/server.sh start
 ExecStop=/opt/minecraft-server/scripts/server.sh stop
 Restart=on-failure
+RemainAfterExit=yes
+ExecStopPost=/bin/sleep 5
 
 [Install]
 WantedBy=multi-user.target
