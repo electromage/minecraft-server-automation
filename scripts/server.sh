@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the latest spigot*.jar file
-SPIGOT_JAR=$(ls -t spigot*.jar | head -n 1)
+SPIGOT_JAR=$(find . -maxdepth 1 -name 'spigot*.jar' -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2-)
 
 case $1 in
   start)
