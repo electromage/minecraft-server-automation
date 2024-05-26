@@ -7,6 +7,10 @@ mkdir -p $MINECRAFT_DIR
 mkdir -p $SPIGOT_DIR
 mkdir -p $BACKUP_DIR
 
+# Copy files to the server directory
+cp -r scripts/* $MINECRAFT_DIR
+cp -r config/* $MINECRAFT_DIR
+
 # Create a new user if it doesn't already exist
 if ! id -u minecraft >/dev/null 2>&1; then
     sudo useradd -m $MINECRAFT_USER
@@ -25,10 +29,6 @@ wget -O $SPIGOT_DIR/BuildTools.jar "$BUILD_TOOLS_URL"
 
 # Build the Spigot server
 bash scripts/spigot-build.sh
-
-# Copy files to the server directory
-cp -r scripts/* $MINECRAFT_DIR
-cp -r config/* $MINECRAFT_DIR
 
 # Install the unit file if it doesn't already exist
 if [ ! -f /etc/systemd/system/minecraft.service ]; then
