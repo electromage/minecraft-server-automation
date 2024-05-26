@@ -23,6 +23,9 @@ sudo chown -R $MINECRAFT_USER:$MINECRAFT_USER $SPIGOT_DIR
 # Get the latest version of the Spigot BuildTools
 wget -O $SPIGOT_DIR/BuildTools.jar "$BUILD_TOOLS_URL"
 
+# Build the Spigot server
+bash scripts/spigot-build.sh
+
 # Copy files to the server directory
 cp -r scripts/* $MINECRAFT_DIR
 cp -r config/* $MINECRAFT_DIR
