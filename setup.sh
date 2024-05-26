@@ -24,9 +24,6 @@ fi
 sudo chown -R $MINECRAFT_USER:$MINECRAFT_USER $MINECRAFT_DIR
 sudo chown -R $MINECRAFT_USER:$MINECRAFT_USER $SPIGOT_DIR
 
-# Get the latest version of the Spigot BuildTools
-wget -O $SPIGOT_DIR/BuildTools.jar "$BUILD_TOOLS_URL"
-
 # Build the Spigot server if spigot*.jar isn't already installed
 if ! ls $MINECRAFT_DIR/spigot*.jar >/dev/null 2>&1; then
     bash scripts/spigot-build.sh
@@ -50,10 +47,7 @@ fi
 
 # Configure crontab for backups if not already configured
 crontab -u $MINECRAFT_USER -l | grep -q '$MINECRAFT_DIR/scripts/backup.sh' || {
-    crontab -u $MINECRAFT_USER -l > mycron
-    echo "0 2 * * * $MINECRAFT_DIR/scripts/backup.sh" >> mycron
-    crontab -u $MINECRAFT_USER mycron
-    rm mycron
+    (crontab -u $MINECRAFT_USER -l ; echo "0 2 * * * $MINECRAFT_DIR/scripts/backup.sh") | crontab -u $MINECRAFT_USER -
 }
 
 # Enable the service to start on boot if not already enabled
