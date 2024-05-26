@@ -8,8 +8,8 @@ mkdir -p $SPIGOT_DIR
 mkdir -p $BACKUP_DIR
 
 # Copy files to the server directory
-cp -r scripts/* $MINECRAFT_DIR
-cp -r config/* $MINECRAFT_DIR
+cp -r scripts/* $MINECRAFT_DIR/
+cp -r config/* $MINECRAFT_DIR/
 
 # Create a new user if it doesn't already exist
 if ! id -u minecraft >/dev/null 2>&1; then
